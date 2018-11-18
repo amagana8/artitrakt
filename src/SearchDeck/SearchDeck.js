@@ -3,16 +3,14 @@ import * as ArtifactApi from 'node-artifact-api';
 function getSearchDeck() {
     let search_deck = [];
     let set_id = "0";
-    let temp_set = getSet(set_id, false);
+    let temp_set = {};
 
-    while (temp_set typeof 'object' && temp_set.hasOwnProperty('set_info')) {
+    while (typeof (temp_set = ArtifactApi.getSet(set_id, false)) === 'object' && temp_set.hasOwnProperty('set_info')) {
         addToDeck(search_deck, temp_set);
 
         let integer = parseInt(set_id, 10);
         integer++;
-        set_id = integer.toString();
-        temp_set = getSet(set_id, false);
-    }
+        set_id = integer.toString();    }
 
     return search_deck;
 }
