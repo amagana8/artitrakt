@@ -1,9 +1,4 @@
-import * as ArtifactApi from 'node-artifact-api';
-
-function getSearchDeck() {
-    let search_deck = [];
-    let set_id = "0";
-    let temp_set = {
+{
 "card_set":{
 "version":1,
 "set_info":{
@@ -2235,31 +2230,3 @@ function getSearchDeck() {
 
 }
 };
-
-    while (/*typeof (temp_set = await ArtifactApi.getSet(set_id, false)) === 'object' &&*/ temp_set.hasOwnProperty('card_set')) {
-        addToDeck(search_deck, temp_set);
-
-        let integer = parseInt(set_id, 10);
-        integer++;
-        set_id = integer.toString(); 
-        temp_set = {};  
-    }
-
-    return search_deck;
-}
-
-function addToDeck(search_deck, temp_set) {
-    let card_list = temp_set.card_set.card_list;
-
-    for (var i = 0; i < card_list.length; i++) {
-        let type = card_list[i].card_type;
-        if (type != "Stronghold" && type != "Pathing") {
-            search_deck[search_deck.length] = { 
-                label : card_list[i].card_name.english,
-                value : card_list[i]
-            };
-        }
-    }
-}
-
-export default { getSearchDeck };

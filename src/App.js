@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import AutoComplete from './AutoComplete.js';
+import Select from 'react-select';
+import SearchDeck from './SearchDeck/SearchDeck.js'
+
+const search_deck = SearchDeck.getSearchDeck();
 
 class App extends Component {
   render() {
@@ -22,9 +25,7 @@ class App extends Component {
           </a>
 
         </header>
-
-        <AutoComplete/>
-
+        <Select options = { search_deck } onChange={opt => console.log("test" + opt.label)} />
       </div>
     );
   }
