@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "artifact-js": "^0.1.0",
+    "electron-is-dev": "^1.0.1",
     "node-artifact-api": "^0.3.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
@@ -11,21 +12,30 @@
     "react-select": "^2.0.0-beta.7",
     "semantic-ui-react": "^0.83.0"
   },
-  "main": "src/main.js",
+  "homepage": "./",
+  "author" : "ohjinsoo",
+  "main": "public/electron.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "electron": "electron ."
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test --env=jsdom",
+    "react-eject": "react-scripts eject",
+    "electron-build": "electron-builder",
+    "release": "yarn react-build && electron-builder --publish=always",
+    "build": "yarn react-build && yarn electron-build",
+    "electron-dev": "concurrently \"BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
   },
   "eslintConfig": {
     "extends": "react-app"
   },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "electron": "^3.0.9",
-    "prettier": "1.15.2"
+    "concurrently": "^4.1.0",
+    "electron": "^3.0.10",
+    "electron-builder": "^20.36.2",
+    "gulp-yarn": "^2.0.0",
+    "prettier": "1.15.2",
+    "wait-on": "^3.2.0"
   },
   "browserslist": [
     ">0.2%",

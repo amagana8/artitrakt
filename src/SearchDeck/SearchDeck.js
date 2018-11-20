@@ -2253,7 +2253,7 @@ function addToDeck(search_deck, temp_set) {
 
     for (var i = 0; i < card_list.length; i++) {
         let card = card_list[i];
-        if (card.type != "Stronghold" && card.type != "Pathing") {
+        if (card.card_type != "Stronghold" && card.card_type != "Pathing") {
             var value = {
                 id : card.card_id,
                 type : card.type,

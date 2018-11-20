@@ -14,7 +14,6 @@ import {
   Transition,
   Label
 } from "semantic-ui-react";
-
 /*
   selected_deck is the deck selected from the decks array. Starts with -1 as no decks are selected, but as you click on decks or make new decks, it changes.
   decks is an array of 'deck' (obviously). a deck object contains 'deck_name' and 'cards'.
@@ -32,19 +31,14 @@ class App extends Component {
   componentDidMount() {
     this.fetchCards();
     // localStorage.clear();
-    let selected_deck = JSON.parse(localStorage.getItem("selected_deck"));
     let decks = JSON.parse(localStorage.getItem("decks"));
-
-    
-    console.log("sd: ", selected_deck);
     console.log("d: ", decks);
-
-    if (selected_deck) {
-      this.setState({ selected_deck });
-    }
 
     if (decks) {
       this.setState({ decks });
+      if (decks.length > 0) {
+        this.setState({selected_deck : decks[0]});
+      }
     }
   }
 
@@ -78,7 +72,6 @@ class App extends Component {
         decks,
         selected_deck
       });
-      localStorage.selected_deck = JSON.stringify(selected_deck);
       localStorage.decks = JSON.stringify(decks);
       console.log("ls: ", decks);
     }
@@ -100,7 +93,6 @@ class App extends Component {
 
   handleClickDeck = selected_deck => {
     this.setState({ selected_deck });
-    localStorage.selected_deck = JSON.stringify(selected_deck);
   };
 
   onCardSelect = (selectedOption) => {
@@ -114,7 +106,6 @@ class App extends Component {
     if (card.hasOwnProperty("id")) {
       selected_deck.cards.push(card);
       this.setState({selected_deck});
-      localStorage.selected_deck = JSON.stringify(selected_deck);
       localStorage.decks = JSON.stringify(this.state.decks);
     }
   }
@@ -123,7 +114,6 @@ class App extends Component {
     let selected_deck = this.state.selected_deck;
     selected_deck.cards.splice(idx, 1);
     this.setState({ selected_deck });
-    localStorage.selected_deck = JSON.stringify(selected_deck);
     localStorage.decks = JSON.stringify(this.state.decks);
   }
 
@@ -135,9 +125,9 @@ class App extends Component {
       let selected_deck = this.state.selected_deck;
       selected_deck.wins = value;
       this.setState({selected_deck});
-      localStorage.selected_deck = JSON.stringify(selected_deck);
       localStorage.decks = JSON.stringify(this.state.decks);
     }
+
     e.target.wins.value = "";
   }
 
@@ -149,9 +139,9 @@ class App extends Component {
       let selected_deck = this.state.selected_deck;
       selected_deck.losses = value;
       this.setState({selected_deck});
-      localStorage.selected_deck = JSON.stringify(selected_deck);
       localStorage.decks = JSON.stringify(this.state.decks);
     }
+
     e.target.losses.value = "";
   }
   render() {

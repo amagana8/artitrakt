@@ -8,10 +8,9 @@ const DeckShowcase = (props) => {
     <br></br>
         {props && props.cards ? (props.cards.map((card , i) => (
             <List.Item key={i}>
-              <Image avatar src={card.mini_image} />
               <List.Content>
                 <List.Header>
-                    {card.name}
+                    <Image size="small" src={card.image} />
                     <Icon onClick={() => {
                         props.deleteCard(i);
                     }} size="small" name='delete' />
