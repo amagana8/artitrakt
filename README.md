@@ -1,9 +1,14 @@
 # Artitrakt
 
 A deck tracker for the game Artifact.
-Saves decks, and keeps track of your wins/losses.
+Saves decks and keeps track of your wins/losses.
 
-
+# TODO LIST
+* Fix API calls.
+* Save card list into local storage
+* Save decks + win/lose record into local storage
+* Add descriptions when hovering over card.
+* Keep card icon + name lined up
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

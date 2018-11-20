@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Select from "react-select";
 import SearchDeck from "./SearchDeck/SearchDeck.js";
 import DeckShowcase from "./DeckShowcase.js"
+import RecordCounter from "./RecordCounter.js"
 import {
   Button,
   Divider,
@@ -64,7 +65,15 @@ class App extends Component {
   };
 
   deleteDeck = () => {
-    this.state.decks.splice();
+    var decks = this.state.decks;
+    for(var i = 0; i < decks.length; i++) {
+      if (decks[i] === this.state.selected_deck) {
+        decks.splice(i, 1);
+        var selected_deck = {};
+        this.setState({ decks, selected_deck });
+        break;
+      }
+    }
   };
 
   handleClickDeck = selected_deck => {
@@ -83,6 +92,12 @@ class App extends Component {
       selected_deck.cards.push(card);
       this.setState({selected_deck});
     }
+  }
+
+  deleteCard = (idx) => {
+    let selected_deck = this.state.selected_deck;
+    selected_deck.cards.splice(idx, 1);
+    this.setState({ selected_deck });
   }
 
   render() {
@@ -106,9 +121,11 @@ class App extends Component {
                 <p>
                   Welcome to ARTITRAKT. Build Artifact decks and track how well
                   you compete with other players!
+                  <br></br>
+                  Created by amagana8 and ohjinsoo.
                 </p>
                 <Label.Group>
-                  {this.state.decks.length == 0 ? (
+                  {this.state.decks.length === 0 ? (
                     <Label color="red">No Decks</Label>
                   ) : (
                     this.state.decks.map(deck => (
@@ -138,15 +155,15 @@ class App extends Component {
               <Divider />
 
               <Transition
-                visible={this.state.decks.length != 0}
+                visible={this.state.decks.length !== 0}
                 animation="scale"
                 duration={500}
               >
-                <Select options={this.state.search_deck} onChange={this.onCardSelect}/>
+                <Select placeholder="Search for a Card..." options={this.state.search_deck} onChange={this.onCardSelect}/>
               </Transition>
-
+              <br></br>
               <Transition
-                visible={this.state.decks.length != 0}
+                visible={this.state.decks.length !== 0}
                 animation="scale"
                 duration={500}
               >
@@ -154,16 +171,34 @@ class App extends Component {
                   Add Card to Deck
                 </Button>
               </Transition>
-            </Grid.Column>
-          </Grid.Row>
+              <br></br>
               <Transition
-                visible={this.state.decks.length != 0}
+                visible={this.state.decks.length !== 0}
                 animation="scale"
                 duration={500}
               >
-            <DeckShowcase cards = {this.state.selected_deck.cards} />
-          </Transition>
+                <RecordCounter/>
+              </Transition>
+              <Transition
+                visible={this.state.decks.length !== 0}
+                animation="scale"
+                duration={500}
+              >
+            <DeckShowcase cards = {this.state.selected_deck.cards} deleteCard = {this.deleteCard} />
+            </Transition>
+            <Transition
+              visible={this.state.decks.length !== 0}
+              animation="scale"
+              duration={500}
+            >
+              <Button color="red" onClick={this.deleteDeck}>
+                DELETE THIS DECK
+              </Button>
+            </Transition>
+            </Grid.Column>
+          </Grid.Row>
         </Grid>
+
       </div>
     );
   }

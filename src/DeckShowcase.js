@@ -1,19 +1,25 @@
 import React from 'react'
-import { Image, List } from 'semantic-ui-react'
+import { Image, List, Icon } from 'semantic-ui-react'
 
-const DeckShowcase = (props) => (
+const DeckShowcase = (props) => {
+    return(
     <List divided horizontal size="massive">
     <List.Item></List.Item>
     <br></br>
-        {props.cards.map((card) => (
-            <List.Item key={card.card_id}>
+        {props && props.cards ? (props.cards.map((card , i) => (
+            <List.Item key={i}>
               <Image avatar src={card.mini_image.default} />
               <List.Content>
-                <List.Header> {card.card_name.english} </List.Header>
+                <List.Header>
+                    {card.card_name.english}
+                    <Icon onClick={() => {
+                        props.deleteCard(i);
+                    }} size="small" name='delete' />
+                </List.Header>
               </List.Content>
             </List.Item>
-        ))}
-    </List>
-)
+        ))) : (false)}
+    </List>)
+}
 
 export default DeckShowcase
