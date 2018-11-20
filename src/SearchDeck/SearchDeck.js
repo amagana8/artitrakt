@@ -1,6 +1,6 @@
 import * as ArtifactApi from 'node-artifact-api';
 
-function getSearchDeck() {
+async function getSearchDeck() {
     let search_deck = [];
     let set_id = "0";
     let temp_set = {

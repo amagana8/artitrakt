@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "electron": "^1.4.14",
+    "artifact-js": "^0.1.0",
     "node-artifact-api": "^0.3.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-scripts": "2.1.1",
-    "react-select": "^2.0.0-beta.7"
+    "react-select": "^2.0.0-beta.7",
+    "semantic-ui-react": "^0.83.0"
   },
   "main": "src/main.js",
   "scripts": {
@@ -22,7 +23,9 @@
     "extends": "react-app"
   },
   "devDependencies": {
-    "electron": "^3.0.9"
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "electron": "^3.0.9",
+    "prettier": "1.15.2"
   },
   "browserslist": [
     ">0.2%",
