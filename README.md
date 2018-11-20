@@ -5,7 +5,7 @@ Saves decks and keeps track of your wins/losses.
 
 # Download Link
 
-Click [here](https://google.com) to get Artitrakt v0.1.0.
+Click [here](https://github.com/amagana8/artitrakt/releases/download/0.1.0/artitrakt.app.zip) to get Artitrakt v0.1.0.
 
 # Todo
 * Fix API calls.
