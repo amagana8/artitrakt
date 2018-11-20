@@ -31,6 +31,21 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchCards();
+    // localStorage.clear();
+    let selected_deck = JSON.parse(localStorage.getItem("selected_deck"));
+    let decks = JSON.parse(localStorage.getItem("decks"));
+
+    
+    console.log("sd: ", selected_deck);
+    console.log("d: ", decks);
+
+    if (selected_deck) {
+      this.setState({ selected_deck });
+    }
+
+    if (decks) {
+      this.setState({ decks });
+    }
   }
 
   fetchCards = async () => {
@@ -50,15 +65,22 @@ class App extends Component {
     const value = e.target.deck_name.value;
 
     if (value) {
-      let deck = {
-        id: this.state.decks.length + 1,
+      let selected_deck = {
+        id: this.state.decks.length,
         deck_name: value,
+        wins: 0,
+        losses: 0,
         cards: []
       };
+      let decks = this.state.decks;
+      decks.push(selected_deck);
       this.setState({
-        decks: [...this.state.decks, deck],
-        selected_deck: deck
+        decks,
+        selected_deck
       });
+      localStorage.selected_deck = JSON.stringify(selected_deck);
+      localStorage.decks = JSON.stringify(decks);
+      console.log("ls: ", decks);
     }
 
     e.target.deck_name.value = "";
@@ -66,18 +88,19 @@ class App extends Component {
 
   deleteDeck = () => {
     var decks = this.state.decks;
-    for(var i = 0; i < decks.length; i++) {
-      if (decks[i] === this.state.selected_deck) {
-        decks.splice(i, 1);
-        var selected_deck = {};
-        this.setState({ decks, selected_deck });
-        break;
-      }
+    var idx = this.state.selected_deck.id;
+    decks.splice(this.state.selected_deck.id, 1);
+    for(var i = idx; i < decks.length; i++) {
+      decks[i].id--;
     }
+    var selected_deck = {};
+    this.setState({ decks, selected_deck });
+    localStorage.decks = JSON.stringify(decks);;
   };
 
   handleClickDeck = selected_deck => {
     this.setState({ selected_deck });
+    localStorage.selected_deck = JSON.stringify(selected_deck);
   };
 
   onCardSelect = (selectedOption) => {
@@ -88,9 +111,11 @@ class App extends Component {
     let selected_deck = this.state.selected_deck;
     let card = this.state.selected_card;
 
-    if (card.hasOwnProperty("card_id")) {
+    if (card.hasOwnProperty("id")) {
       selected_deck.cards.push(card);
       this.setState({selected_deck});
+      localStorage.selected_deck = JSON.stringify(selected_deck);
+      localStorage.decks = JSON.stringify(this.state.decks);
     }
   }
 
@@ -98,8 +123,37 @@ class App extends Component {
     let selected_deck = this.state.selected_deck;
     selected_deck.cards.splice(idx, 1);
     this.setState({ selected_deck });
+    localStorage.selected_deck = JSON.stringify(selected_deck);
+    localStorage.decks = JSON.stringify(this.state.decks);
   }
 
+  updateDeckWin = e => {
+    e.preventDefault();
+    const value = e.target.wins.value;
+
+    if (!isNaN(value)) {
+      let selected_deck = this.state.selected_deck;
+      selected_deck.wins = value;
+      this.setState({selected_deck});
+      localStorage.selected_deck = JSON.stringify(selected_deck);
+      localStorage.decks = JSON.stringify(this.state.decks);
+    }
+    e.target.wins.value = "";
+  }
+
+  updateDeckLoss = e => {
+    e.preventDefault();
+    const value = e.target.losses.value;
+
+    if (!isNaN(value)) {
+      let selected_deck = this.state.selected_deck;
+      selected_deck.losses = value;
+      this.setState({selected_deck});
+      localStorage.selected_deck = JSON.stringify(selected_deck);
+      localStorage.decks = JSON.stringify(this.state.decks);
+    }
+    e.target.losses.value = "";
+  }
   render() {
     const { selected_deck } = this.state;
 
@@ -172,13 +226,9 @@ class App extends Component {
                 </Button>
               </Transition>
               <br></br>
-              <Transition
-                visible={this.state.decks.length !== 0}
-                animation="scale"
-                duration={500}
-              >
-                <RecordCounter/>
-              </Transition>
+              
+              <RecordCounter decks = {this.state.decks} selected_deck = {this.state.selected_deck}
+              updateDeckWin = {this.updateDeckWin} updateDeckLoss = {this.updateDeckLoss} />
               <Transition
                 visible={this.state.decks.length !== 0}
                 animation="scale"

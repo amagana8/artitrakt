@@ -1,34 +1,59 @@
 import React from 'react'
-import { Grid, Input, Button } from 'semantic-ui-react'
+import { Grid, Input, Button, Transition} from 'semantic-ui-react'
 
-const RecordCounter = () => (
+const RecordCounter = (props) => (
     <Grid divided='vertically'>
         <Grid.Row columns={2}>
             <Grid.Column>
+                <Transition
+                visible={props.decks.length !== 0}
+                animation="scale"
+                duration={500}
+                >
                 <p><strong>
                     WINS:
                 </strong></p>
-                <form>
-                    <Input placeholder="Update Wins" action>
+                </Transition>
+                    <Transition
+                    visible={props.decks.length !== 0}
+                    animation="scale"
+                    duration={500}
+                    >
+                    <form onSubmit={props.updateDeckWin}>
+                    <Input placeholder={props.selected_deck.wins} action>
                         <input id="wins" />
                         <Button color="green">
-                            Update
+                            Update Wins
                         </Button>
                     </Input>
-                </form>
+                    </form>
+                    </Transition>
             </Grid.Column>
             <Grid.Column>
+                <Transition
+                visible={props.decks.length !== 0}
+                animation="scale"
+                duration={500}
+                >
                 <p><strong>
                     LOSSES:
                 </strong></p>
-                <form>
-                    <Input placeholder="Update Losses" action>
+                </Transition>
+                <Transition
+                    visible={props.decks.length !== 0}
+                    animation="scale"
+                    duration={500}
+                    >
+                    <form onSubmit={props.updateDeckLoss}>
+                    <Input placeholder={props.selected_deck.losses} action>
                         <input id="losses" />
                         <Button color="red">
-                            Update
+                            Update Losses
                         </Button>
                     </Input>
+                    
                 </form>
+                </Transition>
             </Grid.Column>
         </Grid.Row>
     </Grid>

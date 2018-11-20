@@ -2252,11 +2252,19 @@ function addToDeck(search_deck, temp_set) {
     let card_list = temp_set.card_set.card_list;
 
     for (var i = 0; i < card_list.length; i++) {
-        let type = card_list[i].card_type;
-        if (type != "Stronghold" && type != "Pathing") {
+        let card = card_list[i];
+        if (card.type != "Stronghold" && card.type != "Pathing") {
+            var value = {
+                id : card.card_id,
+                type : card.type,
+                name : card.card_name.english,
+                text : card.card_text.english,
+                mini_image : card.mini_image.default,
+                image : card.large_image.default
+            }
             search_deck[search_deck.length] = { 
                 label : card_list[i].card_name.english,
-                value : card_list[i]
+                value : value
             };
         }
     }

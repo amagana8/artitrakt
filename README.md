@@ -6,7 +6,7 @@ Saves decks and keeps track of your wins/losses.
 # TODO LIST
 * Fix API calls.
 * Save card list into local storage
-* Save decks + win/lose record into local storage
+* ~~Save decks + win/lose record into local storage~~
 * Add descriptions when hovering over card.
 * Keep card icon + name lined up
 
