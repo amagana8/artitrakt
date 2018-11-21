@@ -10,8 +10,6 @@ Click [here](https://github.com/amagana8/artitrakt/releases/download/0.1.0/artit
 # Todo
 * Fix API calls.
 * Save card list into local storage.
-* ~~Create Build using electron-builder possibly.~~ Completed 11/20/18
-* ~~Save decks + win/lose record into local storage.~~ Completed 11/20/18
 
 ### `yarn electron-dev`
 
@@ -27,7 +25,7 @@ Click [here](https://github.com/amagana8/artitrakt/releases/download/0.1.0/artit
 
 # Questions
 
-```Q: I get "Unresolved node modules: <insert node module here> when running yarn build. How do you fix this?```
+Q: I get ```Unresolved node modules: <insert node module here>``` when running yarn build. How do you fix this?<br/>
 A: type in ```export ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES=1``` and run it again.
 
 
