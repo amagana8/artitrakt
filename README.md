@@ -10,13 +10,10 @@ Click [here](https://github.com/amagana8/artitrakt/releases/download/0.1.0/artit
 # Todo
 * Fix API calls.
 * Save card list into local storage.
-<<<<<<< HEAD
 * Add table sorting mechanism.
 * Show card image/description/stats when hovering over a card.
 * Import and export decks using Artifact's deck code.
 * Create separate Hero, Items, and Abilities decks.
-=======
->>>>>>> 3f87a069c1518b905e054da4b208d5c1dc0b2a3a
 
 ### `yarn electron-dev`
 
