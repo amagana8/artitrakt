@@ -10,8 +10,10 @@ Click [here](https://github.com/amagana8/artitrakt/releases/download/0.1.0/artit
 # Todo
 * Fix API calls.
 * Save card list into local storage.
-* ~~Create Build using electron-builder possibly.~~ Completed 11/20/18
-* ~~Save decks + win/lose record into local storage.~~ Completed 11/20/18
+* Add table sorting mechanism.
+* Show card image/description/stats when hovering over a card.
+* Import and export decks using Artifact's deck code.
+* Create separate Hero, Items, and Abilities decks.
 
 ### `yarn electron-dev`
 
