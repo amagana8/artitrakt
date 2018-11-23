@@ -10,10 +10,13 @@ Click [here](https://github.com/amagana8/artitrakt/releases/download/0.1.0/artit
 # Todo
 * Fix API calls.
 * Save card list into local storage.
+<<<<<<< HEAD
 * Add table sorting mechanism.
 * Show card image/description/stats when hovering over a card.
 * Import and export decks using Artifact's deck code.
 * Create separate Hero, Items, and Abilities decks.
+=======
+>>>>>>> 3f87a069c1518b905e054da4b208d5c1dc0b2a3a
 
 ### `yarn electron-dev`
 
@@ -29,7 +32,7 @@ Click [here](https://github.com/amagana8/artitrakt/releases/download/0.1.0/artit
 
 # Questions
 
-```Q: I get "Unresolved node modules: <insert node module here> when running yarn build. How do you fix this?```
+Q: I get ```Unresolved node modules: <insert node module here>``` when running yarn build. How do you fix this?<br/>
 A: type in ```export ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES=1``` and run it again.
 
 
