@@ -2,19 +2,10 @@ import * as ArtifactApi from 'node-artifact-api';
 
 async function getSearchDeck() {
     let search_deck = [];
-    let set_id = "0";
-    let temp_set = await ArtifactApi.getSet(set_id, false);
-    console.log("Hello look here");
-    console.log(temp_set);
-
-    while (typeof (temp_set = await ArtifactApi.getSet(set_id, false)) === 'object' && temp_set.hasOwnProperty('set_info')) {
-        addToDeck(search_deck, temp_set);
-
-        let integer = parseInt(set_id, 10);
-        integer++;
-        set_id = integer.toString(); 
-        temp_set = {};  
-    }
+    let temp_set = await ArtifactApi.getSet("00", false);
+    addToDeck(search_deck, temp_set);
+    temp_set = await ArtifactApi.getSet("01", false);
+    addToDeck(search_deck, temp_set);
 
     return search_deck;
 }

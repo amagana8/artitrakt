@@ -8,11 +8,10 @@ Saves decks and keeps track of your wins/losses.
 Click [here](https://github.com/amagana8/artitrakt/releases/download/0.1.0/artitrakt.app.zip) to get Artitrakt v0.1.0.
 
 # Todo
-* Fix API calls.
-* Save card list into local storage.
 * Add table sorting mechanism.
 * Import and export decks using Artifact's deck code.
 * Create separate Hero, Items, and Abilities decks.
+* Add automatic win/loss tracking.
 
 ### `yarn electron-dev`
 
