@@ -13,6 +13,9 @@ Click [here](https://github.com/amagana8/artitrakt/releases/download/0.1.0/artit
 * Create separate Hero, Items, and Abilities decks.
 * Add automatic win/loss tracking.
 
+### 'yarn install'
+```yarn install``` will go through the package.json and download all the required node modules.
+
 ### `yarn electron-dev`
 
 ```yarn electron-dev``` will start the Electron app and the React app at the same time.
