@@ -2,9 +2,10 @@ import * as ArtifactApi from 'node-artifact-api';
 
 async function getSearchDeck() {
     let search_deck = [];
-    let temp_set = await ArtifactApi.getSet("00", false);
+    //let temp_set = await ArtifactApi.getSet("00", false);
+    let temp_set = require('./cardSet.json');
     addToDeck(search_deck, temp_set);
-    temp_set = await ArtifactApi.getSet("01", false);
+    //temp_set = await ArtifactApi.getSet("01", false);
     addToDeck(search_deck, temp_set);
 
     return search_deck;
