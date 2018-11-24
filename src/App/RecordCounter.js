@@ -55,6 +55,31 @@ const RecordCounter = (props) => (
                 </form>
                 </Transition>
             </Grid.Column>
+            <Grid.Column>
+                <Transition
+                visible={props.decks.length !== 0}
+                animation="scale"
+                duration={500}
+                >
+                <p><strong>
+                    DRAWS:
+                </strong></p>
+                </Transition>
+                <Transition
+                    visible={props.decks.length !== 0}
+                    animation="scale"
+                    duration={500}
+                    >
+                    <form onSubmit={props.updateDeckDraw}>
+                    <Input placeholder={props.selected_deck.draws} action>
+                        <input id="draws" />
+                        <Button color="gray">
+                            Update Draws
+                        </Button>
+                    </Input>
+                </form>
+                </Transition>
+            </Grid.Column>
         </Grid.Row>
     </Grid>
 )
